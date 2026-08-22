@@ -1,3 +1,4 @@
+import os
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -40,7 +41,7 @@ for i, bucket_name in enumerate(buckets):
                     ha='center', va='center', color='white', fontweight='bold', fontsize=10)
 
 # 5. Stylize chart elements and axes
-ax.set_title('Corrected Household Wealth Allocation Profile (Standardized Business Equity)', fontsize=13, fontweight='bold', pad=20)
+ax.set_title('Household Wealth Allocation Profile\nIndia vs. China vs. United States', fontsize=13, fontweight='bold', pad=20)
 ax.set_xticks(positions)
 ax.set_xticklabels(countries, fontsize=12, fontweight='bold')
 ax.set_ylabel('Percentage of Total Net Wealth (%)', fontsize=11)
@@ -51,4 +52,11 @@ ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12), ncol=3, frameon=True,
 ax.grid(axis='y', linestyle='--', alpha=0.3)
 
 plt.tight_layout()
+
+# Save plot to assets directory
+os.makedirs('assets', exist_ok=True)
+output_path = os.path.join('assets', 'asset_distribution.png')
+plt.savefig(output_path, dpi=300, bbox_inches='tight')
+print(f"Plot successfully saved to {output_path}")
+
 plt.show()
